@@ -18,30 +18,24 @@ export const fromJSX = <o,>(jsx: (k: Fun<o, void>) => JSX.Element): IComponent<o
 
 export function race<o1,o2>(first:IComponent<o1>, second:IComponent<o2>) : IComponent<o1|o2> {
   const [[o1,o2],setState] = useState<[o1 | undefined,o2 | undefined]>([undefined,undefined])
-   
   return fromJSX(k => {
     return <>
       {first.toJSX(newO1 => { 
         setState(([o1,o2]) => {
-          // console.log("first triggering with", [[o1,newO1],o2])
         if (o1 == undefined && o2 == undefined) { k(newO1); /*console.log("race over, 1", [o1,o2,newO1])*/ }; 
-          // console.log("new state 1", [newO1,o2])          
           return [newO1,o2]
         })        
       })}
       {second.toJSX(newO2 => { 
         setState(([o1,o2]) => {
-          // console.log("first triggering with", [o1,[newO2,o2]])
           if (o1 == undefined && o2 == undefined) { k(newO2); /*console.log("race over, 2", [o1,o2,newO2])*/ }; 
-          // console.log("new state 2", [o1,newO2])
           return [o1,newO2]
         })
       })}        
     </>
   })
 }
-
-
+  
 export function all<o1,o2>(first:IComponent<o1>, second:IComponent<o2>) : IComponent<[o1,o2]> {
   const [[o1,o2],setState] = useState<[o1 | undefined,o2 | undefined]>([undefined,undefined])
    
@@ -72,6 +66,7 @@ export const fromPromise = <o,>(p:Promise<o>): IComponent<o | "failed"> =>
     race: function<o2,>(this:IComponent<o>, other:IComponent<o2>): IComponent<o | o2> { return race(this,other)},
     all: function<o2,>(this:IComponent<o>, other:IComponent<o2>): IComponent<[o,o2]> { return all(this,other)}
   })
+
 
 export function root<s,>(initialState:s, app:Fun<s,IComponent<s>>) {
   const [s0,setState] = useState<s>(initialState)

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom'
-import { fromJSX, root, Fun, IComponent, fromPromise, race } from './icomponent';
+import { fromJSX, root, Fun, IComponent, fromPromise } from './icomponent';
 
 export const first = fromJSX<"first">(k => 
   <div>
@@ -19,16 +19,17 @@ export const counter = (n0:number) => fromJSX<number>(k =>
     <button onClick={_ => k(n0+1)}>{n0}</button>
   </div>)
 
+
 export const App = (props:{}) => {
   return(
-      <>
-          {
-            // root(0,counter)
-            first.all(second).race(third).toJSX(_ => console.log("done", _))
-          }
-      </>
-  );
-};
+    <>
+        {
+          // root({ counter:0 },s0 => counter(s0.counter).map(newCounter => ({ counter:newCounter})))
+          first.all(second).race(third).toJSX(output => console.log("done", output))
+        }
+    </>
+  )
+}
 
 export const main = () => {
   let rootElement = document.querySelector('#root')
