@@ -13,10 +13,6 @@ export const second = fromJSX<"second">(k =>
   </div>)
 
 export const third = fromPromise<"third">(new Promise((res,rej) => setTimeout(() => res("third"), 5000)))
-// export const third = fromJSX<"third">(k => 
-//   <div>
-//     <button onClick={_ => k("third")}>{"third"}</button>
-//   </div>)
 
 export const counter = (n0:number) => fromJSX<number>(k => 
   <div>

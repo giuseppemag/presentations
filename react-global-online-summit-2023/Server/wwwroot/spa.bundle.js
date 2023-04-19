@@ -47,22 +47,31 @@ function _race(first, second) {
     setState = _useState2[1];
   return fromJSX(function (k) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, first.toJSX(function (newO1) {
-      console.log("first triggering with", [[o1, newO1], o2]);
-      if (o1 == undefined && o2 == undefined) {
-        console.log("race over, 1", [o1, o2, newO1]);
-        k(newO1);
-      }
-      ;
-      console.log("new state 1", [newO1, o2]);
-      setState([newO1, o2]);
+      setState(function (_ref) {
+        var _ref2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, 2),
+          o1 = _ref2[0],
+          o2 = _ref2[1];
+        // console.log("first triggering with", [[o1,newO1],o2])
+        if (o1 == undefined && o2 == undefined) {
+          k(newO1); /*console.log("race over, 1", [o1,o2,newO1])*/
+        }
+        ;
+        // console.log("new state 1", [newO1,o2])          
+        return [newO1, o2];
+      });
     }), second.toJSX(function (newO2) {
-      console.log("second triggering with", [o1, [o2, newO2]]);
-      if (o1 == undefined && o2 == undefined) {
-        console.log("race over, 2", [o1, o2, newO2]);
-        k(newO2);
-      }
-      console.log("new state 2", [o1, newO2]);
-      setState([o1, newO2]);
+      setState(function (_ref3) {
+        var _ref4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref3, 2),
+          o1 = _ref4[0],
+          o2 = _ref4[1];
+        // console.log("first triggering with", [o1,[newO2,o2]])
+        if (o1 == undefined && o2 == undefined) {
+          k(newO2); /*console.log("race over, 2", [o1,o2,newO2])*/
+        }
+        ;
+        // console.log("new state 2", [o1,newO2])
+        return [o1, newO2];
+      });
     }));
   });
 }
@@ -76,11 +85,21 @@ function _all(first, second) {
     setState = _useState4[1];
   return fromJSX(function (k) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, first.toJSX(function (newO1) {
-      if (o1 == undefined && o2 != undefined) k([newO1, o2]);
-      setState([newO1, o2]);
+      setState(function (_ref5) {
+        var _ref6 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref5, 2),
+          o1 = _ref6[0],
+          o2 = _ref6[1];
+        if (o1 == undefined && o2 != undefined) k([newO1, o2]);
+        return [newO1, o2];
+      });
     }), second.toJSX(function (newO2) {
-      if (o1 != undefined && o2 == undefined) k([o1, newO2]);
-      setState([o1, newO2]);
+      setState(function (_ref7) {
+        var _ref8 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref7, 2),
+          o1 = _ref8[0],
+          o2 = _ref8[1];
+        if (o1 != undefined && o2 == undefined) k([o1, newO2]);
+        return [o1, newO2];
+      });
     }));
   });
 }
@@ -97,14 +116,14 @@ function promiseToJSX(p, k) {
         k(o);
         setState("completed");
       })["catch"](function (_) {
-        return setState("failed");
+        k("failed");
+        setState("failed");
       });
     }
-    return function () {
-      if (state != "completed") setState("failed");
-    };
-  }, [p, k]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null);
+  }, [state, p, k]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    key: "promise-in-race"
+  }, "Promise ", state);
 }
 var fromPromise = function fromPromise(p) {
   return {
@@ -28888,11 +28907,6 @@ var third = (0,_icomponent__WEBPACK_IMPORTED_MODULE_2__.fromPromise)(new Promise
     return res("third");
   }, 5000);
 }));
-// export const third = fromJSX<"third">(k => 
-//   <div>
-//     <button onClick={_ => k("third")}>{"third"}</button>
-//   </div>)
-
 var counter = function counter(n0) {
   return (0,_icomponent__WEBPACK_IMPORTED_MODULE_2__.fromJSX)(function (k) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
