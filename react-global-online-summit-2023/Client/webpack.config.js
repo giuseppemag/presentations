@@ -46,7 +46,7 @@ module.exports = env => {
     output: {
       filename: isProd ? '[name].bundle.[contenthash].min.js' : '[name].bundle.js',
       chunkFilename: isProd ? '[name].chunk.[contenthash].min.js' : '[name].chunk.js',
-      path: path.resolve(__dirname, '../wwwroot'),
+      path: path.resolve(__dirname, '../Server/wwwroot'),
       publicPath: '/',
       libraryTarget: 'var',
       library: 'spa',

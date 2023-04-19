@@ -25,6 +25,7 @@
     "buffer": "^6.0.3",
     "draft-js": "0.11.7",
     "draftjs-to-html": "^0.9.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "framer-motion": "^2.9.4",
     "i18next": "^21.6.13",
     "iconv-lite": "^0.6.3",
@@ -48,9 +49,7 @@
     "react-intersection-observer": "^8.31.0",
     "react-router-dom": "^4.x",
     "stream-browserify": "^3.0.0",
-    "ts-lenses": "^0.9.4",
-    "whatwg-fetch": "^3.5.0",
-    "widgets-for-react": "link:widgets-library/dev/"
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -92,7 +91,7 @@
     "terser-webpack-plugin": "^5.3.4",
     "ts-jest": "^28.0.2",
     "ts-loader": "^6.2.1",
-    "typescript": "^4.0",
+    "typescript": "^5.0",
     "uglify-js": "^3.16.3",
     "url-loader": "^4.1.1",
     "webpack": "^5.70.0",
