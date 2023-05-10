@@ -1,0 +1,13 @@
+{
+  "name": "typescript-global-online-summit-2023",
+  "version": "1.0.0",
+  "main": "bin/main.js",
+  "author": "Dr. Giuseppe Maggiore",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "immutable": "^4.3.0"
+  }
+}
