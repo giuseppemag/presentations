@@ -8,6 +8,11 @@ export interface IComponent<o> {
   all<o2>(other:IComponent<o2>): IComponent<[o,o2]>
 }
 
+export function root<s,>(initialState:s, app:Fun<s,IComponent<s>>) {
+  const [s0,setState] = useState<s>(initialState)
+  return app(s0).toJSX(s1 => setState(s1))
+}
+
 export const fromJSX = <o,>(jsx: (k: Fun<o, void>) => JSX.Element): IComponent<o> =>
   ({
     toJSX: k => jsx(k),
@@ -67,8 +72,3 @@ export const fromPromise = <o,>(p:Promise<o>): IComponent<o | "failed"> =>
     all: function<o2,>(this:IComponent<o>, other:IComponent<o2>): IComponent<[o,o2]> { return all(this,other)}
   })
 
-
-export function root<s,>(initialState:s, app:Fun<s,IComponent<s>>) {
-  const [s0,setState] = useState<s>(initialState)
-  return app(s0).toJSX(s1 => setState(s1))
-}
