@@ -29,13 +29,13 @@ function race<o1,o2>(first:IComponent<o1>, second:IComponent<o2>) : IComponent<o
     return <>
       {first.toJSX(newO1 => {
         setState(([o1,o2]) => {
-          if (o1 == undefined && o2 == undefined) { k(newO1) }
+          k(newO1)
           return [newO1,o2]
         })
       })}
       {second.toJSX(newO2 => {
         setState(([o1,o2]) => {
-          if (o1 == undefined && o2 == undefined) { k(newO2) }
+          k(newO2)
           return [o1,newO2]
         })
       })}
@@ -70,13 +70,24 @@ const myCountersStateUpdaters = {
     ({...currentState, counter3:newValue}),
 }
 
+export const App = (props:{}) => {
+  return(
+    <>
+      {
+        // myCounter(0).toJSX(_ => console.log(_))
+        root<MyCountersState>(initialMyCountersState, 
+          currentState => 
+            myCounter(currentState.counter1).map(myCountersStateUpdaters.setCounter1(currentState)).race(
+            myCounter(currentState.counter2).map(myCountersStateUpdaters.setCounter2(currentState)).race(
+            myCounter(currentState.counter3).map(myCountersStateUpdaters.setCounter3(currentState))
+            )))
+      }
+    </>
+  )
+}
+
 export const main = () => {
   return createRoot(document.getElementById('root')!).render(
-    root<MyCountersState>(initialMyCountersState, 
-        currentState => 
-          myCounter(currentState.counter1).map(myCountersStateUpdaters.setCounter1(currentState)).race(
-          myCounter(currentState.counter2).map(myCountersStateUpdaters.setCounter2(currentState)).race(
-          myCounter(currentState.counter3).map(myCountersStateUpdaters.setCounter3(currentState))
-          )))
+    <App />
   )
 }

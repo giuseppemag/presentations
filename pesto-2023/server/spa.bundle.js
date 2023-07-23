@@ -33688,6 +33688,7 @@ var __webpack_exports__ = {};
   \*******************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   App: () => (/* binding */ App),
 /* harmony export */   main: () => (/* binding */ main)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
@@ -33737,9 +33738,7 @@ function _race(first, second) {
         var _ref2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_ref, 2),
           o1 = _ref2[0],
           o2 = _ref2[1];
-        if (o1 == undefined && o2 == undefined) {
-          k(newO1);
-        }
+        k(newO1);
         return [newO1, o2];
       });
     }), second.toJSX(function (newO2) {
@@ -33747,9 +33746,7 @@ function _race(first, second) {
         var _ref4 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_ref3, 2),
           o1 = _ref4[0],
           o2 = _ref4[1];
-        if (o1 == undefined && o2 == undefined) {
-          k(newO2);
-        }
+        k(newO2);
         return [o1, newO2];
       });
     }));
@@ -33799,10 +33796,15 @@ var myCountersStateUpdaters = {
     };
   }
 };
-var main = function main() {
-  return (0,react_dom_client__WEBPACK_IMPORTED_MODULE_3__.createRoot)(document.getElementById('root')).render(root(initialMyCountersState, function (currentState) {
+var App = function App(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), null,
+  // myCounter(0).toJSX(_ => console.log(_))
+  root(initialMyCountersState, function (currentState) {
     return myCounter(currentState.counter1).map(myCountersStateUpdaters.setCounter1(currentState)).race(myCounter(currentState.counter2).map(myCountersStateUpdaters.setCounter2(currentState)).race(myCounter(currentState.counter3).map(myCountersStateUpdaters.setCounter3(currentState))));
   }));
+};
+var main = function main() {
+  return (0,react_dom_client__WEBPACK_IMPORTED_MODULE_3__.createRoot)(document.getElementById('root')).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(App, null));
 };
 })();
 
