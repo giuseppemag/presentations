@@ -19,10 +19,17 @@ marp: true
     --color-foreground: #e3e8e7;
     --color-highlight: #35a674;
     --color-dimmed: #35a674; */
-    --color-background: #3A36AE;
+
+--color-background: #3A36AE;
     --color-foreground: #FCEEF5;
     --color-highlight: #E0569B;
+    --color-dimmed: #E0569B;*/
+
+--color-background: #FCEEF5;
+    --color-foreground: #3A36AE;
+    --color-highlight: #E0569B;
     --color-dimmed: #E0569B;
+
   }
 
   code {
@@ -117,6 +124,64 @@ The focus of the first horizon is on:
 > ❌ A clear and detailed design is iterated with all relevant stakeholders.
 > ❌ The development team works as one mind and delivers quickly and efficiently.
 
+---
+
+# And what if we don't?
+Points of attention:
+💀 Every developer writes whatever and however they want - no rules, no guidelines
+💀 Copy-paste everywhere
+💀 Lots of unnecessary code instead of build well once - reuse forever
+💀 Different repositories (IT'S JUST ONE APPLICATION!!!)
+
+---
+
+# And what if we don't?
+💀 Strategic decisions just happen in the teams
+💀 Key individuals determine the course of the company around their own preferences
+
+---
+
+# And what if we don't?
+💀 Things broken all the time
+💀 Deployments in the backend break the frontend
+
+---
+
+# And what if we don't?
+💀 Developers never own the whole feature from back- to frontend
+💀 Specializations (DevOps/CSS) are not correctly isolated from dev
+...
+
+---
+
+# And what if we don't?
+💀 Non-versioned API
+💀 Inconsistent API
+💀 No self-documenting meta API (OpenAPI/OData)
+...
+
+---
+
+# And what if we don't?
+💀 Deadlines without estimates
+💀 Estimates without scope
+💀 Scope without design
+💀 Design without requirements
+
+---
+
+# And what if we don't?
+Three cautionary tales:
+💀 Cies, Hoppinger's _coding CTO_
+💀 Kirsten's "developers need to own and test better"
+💀 The 256 VPS'es of Hoppinger vs Ubuntu 14
+💀 The 37 EoL forked packages from Hoppinger
+💀 [VERY CONFIDENTIAL] van Oord and the unsolvable bug
+💀 [VERY CONFIDENTIAL] Apotheek Partner's almost death
+
+---
+
+# If we continue like this, quality will keep going down, development time will keep going up
 
 ---
 
