@@ -63,6 +63,7 @@ determine the three horizons (big strategic steps) towards the BHAG
 > BO+PO think up features and epics and define requirements.
 > A clear and detailed design is iterated with all relevant stakeholders.
 > The development team works as one mind and delivers quickly and efficiently.
+> Developers are happy to come, and stay for many years, at BLP.
 
 ---
 
@@ -97,6 +98,7 @@ easy to work with
 ❌ The BO+PO think up features and epics and define requirements.
 ❌ A clear and detailed design is iterated with all relevant stakeholders.
 ❌ The development team works as one mind and delivers quickly and efficiently.
+⚠️ Developers are happy to come, and stay for many years, at BLP.
 
 ---
 
@@ -150,7 +152,6 @@ Points of attention:
 # And what if we don't?
 💀 Developers never own the whole feature from back- to frontend
 💀 Specializations (DevOps/CSS) are not correctly isolated from dev
-...
 
 ---
 
@@ -158,7 +159,6 @@ Points of attention:
 💀 Non-versioned API
 💀 Inconsistent API
 💀 No self-documenting meta API (OpenAPI/OData)
-...
 
 ---
 
@@ -176,6 +176,7 @@ Three cautionary tales:
 💀 Kirsten's "developers need to own and test better"
 💀 The 256 VPS'es of Hoppinger vs Ubuntu 14
 💀 The 37 EoL forked packages from Hoppinger
+💀 Hoppinger' retention panic in 2019
 💀 [VERY CONFIDENTIAL] van Oord and the unsolvable bug
 💀 [VERY CONFIDENTIAL] Apotheek Partner's almost death
 
