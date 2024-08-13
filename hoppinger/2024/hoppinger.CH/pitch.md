@@ -123,9 +123,9 @@ Double model
 
 # Pricing
 Monthly: three sizes for transparent pricing
-- 2.5k/month for up to 0.5mln of webshop transactions a year
-- 5k/month for up to 2.5mln of webshop transactions a year
-- 10k/month for unlimited webshop transactions a year
+- 2.5k/month for up to 0.5mln of webshop transactions a month
+- 5k/month for up to 2.5mln of webshop transactions a month
+- 10k/month for unlimited webshop transactions a month
 
 ---
 
