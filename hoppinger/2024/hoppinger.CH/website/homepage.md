@@ -29,7 +29,7 @@ The beauty of strategic digital transformation is that the same know-how can app
 ## Technologies
 As a builder, it is important to me that I use the most powerful, reliable tools available on the market. The right balance is found between cutting edge advanced technologies and best-of-breed foundations that you can rely on for decades to come:
 
-[.Net](./technologies/dot-net.md) | [APIs](./technologies/apis.md) | [PowerPlatform](./technologies/powerplatform.md) | [Native apps](./technologies/rx-native.md) | [Business Central](./technologies/bc.md) | [SAP](./technologies/sap.md) | [AI](./technologies/ai.md)
+[.Net](./technologies/dot-net.md) | [APIs](./technologies/apis.md) | [PowerPlatform](./technologies/powerplatform.md) | [Native apps](./technologies/rx-native.md) | [Business Central](./technologies/bc.md) | [SAP](./technologies/sap.md) | [ML and AI](./technologies/ml-and-ai.md)
 
 ## Cases
 Existing projects showcase expertise and a maker's pride, but they also represent a veritable treasure trove of solutions that can be readily reused: after all, we don't need to reinvent the wheel all the time!
