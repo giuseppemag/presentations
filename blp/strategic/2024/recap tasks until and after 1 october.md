@@ -46,7 +46,8 @@ by Dr Giuseppe Maggiore
 # Before 1/10
 FI dashboard in web2.0
 web1.9 dashboard cards
-web1.9 dashboard configuration
+web1.9 dashboard configuration for FI
+memory leak
 dashboard performance
 
 ---
@@ -57,166 +58,162 @@ details forms: either restyle or redesign+rebuild
 new defaulting system
 new configuration system
 start screen
+accelerate development
 
 ---
 
-# FI dashboard
-all cards are being styled
-accounting positions
-...
+# <!-- fit --> Before 1/10
 
 ---
 
-# The BHAG
-The product is 100% resilient and 100% versatile.
-Resilient: no bugs, no downtime, no regressions.
-Versatile: any extension is possible, without huge overhead.
+# FI dashboard in web2.0
+accounting positions being completed - various API integration challenges 
+all other FI cards being styled
+SVGs in dashboard suspended - waiting for API
+team resources allocated on end-to-end
 
 ---
 
-# The BHAG - resilience of codebase
-high security/privacy
-high quality
-high standardization
-high parameterization
-high automation
-high modularity
-zero fragmentation
+# web1.9 dashboard cards
+restyling is in progress
+no change in functionality or API
 
 ---
 
-# The BHAG - resilience of infra
-simple
-cheap
-easy to work with
-100% safe
+# web1.9 dashboard configuration for FI
+adjust current configuration windows for FI cards
+restyle it
 
 ---
 
-# The current situation of the roadmap
-⚠️ BO defines a clear strategic roadmap and prioritization framework
-❌ The BO+PO think up features and epics and define requirements.
-❌ A clear and detailed design is iterated with all relevant stakeholders.
-❌ The development team works as one mind and delivers quickly and efficiently.
-⚠️ Developers are happy to come, and stay for many years, at BLP.
+# memory leak
+a bug in React 17
+fixed with React 18
+PoC shows no memory leak
+needs to be tested very carefully for regression
 
 ---
 
-# The current situation of the codebase
-⚠️ high security/privacy
-❌ high quality
-❌ high standardization
-❌ high parameterization
-❌ high automation
-❌ high modularity
-❌ zero fragmentation
+# dashboard performance
+a lot of the waiting time is API-bound
+we need to investigate together with BE
+still open to seek FE quick wins
 
 ---
 
-# The current situation of the infra
-❌ simple
-❌ cheap
-❌ easy to work with
-⚠️ 100% safe
+# <!-- fit --> After 1/10
 
 ---
 
-# The way towards
-The focus of the first horizon is on:
-> ❌ A clear and detailed design is iterated with all relevant stakeholders.
-> ❌ The development team works as one mind and delivers quickly and efficiently.
+# new view of all tables 
+we architected and built a generic, reusable view for tables
+in use for all document tables and tasks
+will be used for all table views in the application
+**IMPORTANT!** these are not copies of code, but _reused instances of the same_
 
 ---
 
-# And what if we don't?
-Points of attention:
-💀 Every developer writes whatever and however they want - no rules, no guidelines
-💀 Copy-paste everywhere
-💀 Lots of unnecessary code instead of build well once - reuse forever
-💀 Different repositories (IT'S JUST ONE APPLICATION!!!)
+# details forms: either restyle or redesign+rebuild
+many forms similar to each other
+per form, we will estimate the time to restyle it
+if it's too much, or the impact of a new form is high, we rebuild it
+**IMPORTANT!** we are building a generic form system like for tables to reuse instead of copy
 
 ---
 
-# And what if we don't?
-💀 Strategic decisions just happen in the teams
-💀 Key individuals determine the course of the company around their own preferences
+# new defaulting system
+defaulting will be redesigned
+clearly show the filtering inputs (senderId = 123) andthe defaulted value (taxCode = abc)
+new filters created contextually from the dashboard and the filters view
 
 ---
 
-# And what if we don't?
-💀 Things broken all the time
-💀 Deployments in the backend break the frontend
+# new configuration system
+new forms plus contextual filter (by ERP, application version/launch date, other features)
+smart configuration screens
+hierarchical grouping/tagging for contextual screens
 
 ---
 
-# And what if we don't?
-💀 Developers never own the whole feature from back- to frontend
-💀 Specializations (DevOps/CSS) are not correctly isolated from dev
+# start screen
+an aesthetically pleasing start screen
 
 ---
 
-# And what if we don't?
-💀 Non-versioned API
-💀 Inconsistent API
-💀 No self-documenting meta API (OpenAPI/OData)
+# <!-- fit --> Accelerate development
 
 ---
 
-# And what if we don't?
-💀 Deadlines without estimates
-💀 Estimates without scope
-💀 Scope without design
-💀 Design without requirements
+# where can we speed up?
+uniformity and standardization
+splitting and specialization
+configuration vs deployment (machines making machines)
+process, documentation, and roadmap
+integration with BE team
 
 ---
 
-# And what if we don't?
-Three cautionary tales:
-💀 Cies, Hoppinger's _coding CTO_
-💀 Kirsten's "developers need to own and test better"
-💀 The 256 VPS'es of Hoppinger vs Ubuntu 14
-💀 The 37 EoL forked packages from Hoppinger
-💀 Hoppinger' retention panic in 2019
-💀 [VERY CONFIDENTIAL] van Oord and the unsolvable bug
-💀 [VERY CONFIDENTIAL] Apotheek Partner's almost death
+# uniformity and standardization
+the codebase was very fragmented
+every developer, every feature, different
+new developers were more lost than found
+
+we now work with a highly standardized codebase
+every developer writes the same code as everyone else
 
 ---
 
-# If we continue like this, quality will keep going down, development time will keep going up
+# splitting and specialization
+architecture, business logic, API, styling, and design require different expertises
+the codebase splits these clearly
+different experts can work without conflict on different phases of a feature
+this results in higher quality
 
 ---
 
-# The way towards - step 1
-🔝 high standardization
-🔝 high parameterization
-🔝 high automation
-🔝 high modularity
-🔝 clear and detailed design iterated
+# configuration vs deployment (machines making machines)
+too much code was repeated when dealing with similar things
+we are introducing more and more reusable modules
+when a reusable module is mature, _turn it_ into a configurable engine
+for example: JSON definition of forms (in progress)
+this will greatly reduce the time to build a new form or dashboard card
+it even makes it possible to store some JSONs in the database for hyper-fast iteration without deployment
 
 ---
 
-# The way towards - step 2
-⬆️ zero fragmentation (repos and teams)
-⬆️ high quality
-➡️ high security/privacy
-➡️ the BO+PO think up features and epics and define requirements.
+# process, documentation, and roadmap
+the process should zoom from requirements down to pixel-perfect
+needs extension with
+  interaction with multiple stakeholders
+  functional documentation - why is this feature there? 
+  documentation of ERP and client context
+  interaction design (high level flow/wireframes)
+  usable prototype
+  kitchen-sink design
+  **no pixel-perfect design**, style the usable prototype directly and work agile
 
 ---
 
-# The way towards - step 3
-➡️ infra is simple
-➡️ infra is cheap
-➡️ infra is easy to work with
-➡️ infra is 100% safe
+# integration with BE team
+make work less fragmented
+first focus on improving FE team before looking at broader perspective
 
 ---
 
-# Horizon 1
-At the end of horizon 1, new features will be developed effectively, efficiently, and without defects.
+# conclusion
+team working hard on web1.9/FI deadline
+after deadline move on to remaining restyling/redesign
+meanwhile, improve efficiency and sustainability
+  of codebase
+  of process
 
 
----
 
-# Thank you!
-Let's do this 💙
-
+<!-- ❌ 
+⚠️ 
+💀
+🔝
+⬆️
+➡️
+💙
+ -->
