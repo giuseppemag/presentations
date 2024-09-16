@@ -56,6 +56,7 @@ new view of all tables
 details forms: either restyle or redesign+rebuild
 new defaulting system
 new configuration system
+start screen
 
 ---
 
