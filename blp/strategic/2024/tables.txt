@@ -1,0 +1,74 @@
+Category	Type	# columns # actions
+
+DMS configurations	User			5|7 <- filter by user group
+DMS configurations	User groups		3|6 <- filter by user group
+DMS configurations	Document groups		3|5 <- filter by document group
+DMS configurations	User-defined fields	5|4
+DMS configurations	Tag manager		4|4
+DMS configurations	Filter groups		4|7
+DMS configurations	Text modules		3|5
+DMS configurations	Text modules groups	1|5
+
+Workflow config		Workflow definitions	1|5 <- filter by only active, copy button must go to the actions
+Workflow config		Workflow instances	72|5
+Workflow config		Dashboard configurations	3|7
+Workflow config		Dashboard checks	5|5
+Workflow config		Organizational chart definitions	2|4 <- filter by valid
+
+Preassignment		Value default		4|5 <- also requires new filter on new column (the entry condition) and new column for the defaulted value
+Preassignment		Employee assignments  <- broken: what to do?
+Preassignment		Entity to entity (x7 tables) <- redesign recommended: merge with value default
+Preassignment		Data identifier list <- redesign recommended: merge with value default
+Preassignment		Regex field <- redesign recommended: merge with value default and define richer rewrite operation
+Preassignment		Release limit (freigabe limit) <- redesign recommended: merge with value default and extend value defaulting to business rules
+Preassignment		Operating calendar <- redesign recommended: merge with value default and extend value defaulting to business rules
+Preassignment		Posting period  <- redesign recommended: merge with value default and extend value defaulting to business rules
+Preassignment		Add up delivery date <- redesign recommended: merge with value default and extend value defaulting to business rules
+Preassignment		Invoice type configuration  <- redesign recommended: merge with value default and extend value defaulting to business rules
+Preassignment		Custom fields <- merge with value default (API possibly needs change)
+Preassignment		Dynamic user assignment <- redesign recommended: merge with value default and extend value defaulting to business rules
+Preassignment		Unit assignment <- merge with value default (API possibly needs change)
+Preassignment		CSV mapping		5|4
+Preassignment		Accounting templates		<- redesign recommended
+
+Configuration		Assign clients		7|5
+Configuration		Menu rights		1|4
+Configuration		Function rights		1|4
+Configuration		Restrict dropdowns	4|5
+
+BLP Connect		Mailbox configurations	4|6
+BLP Connect		Query definitions	2|5
+BLP Connect		Query definitions groups	2|5
+BLP Connect		SAP sync configurations	16|11
+BLP Connect		BLP sync configurations	20|8 <- redesign recommended - talk to SAP team (low prio, only internal)
+
+BLP Partner Area	Customer / Clients	7|8
+BLP Partner Area	Dashboard templates	3|5
+BLP Partner Area	Admin sync logs		21|5
+BLP Partner Area	Workflow templates <- broken: what to do?
+
+BLP Admin Area		Annotation todos	11|5
+BLP Admin Area		BOOSTER Training / Issues	18|9
+BLP Admin Area		Templates <- deprecated
+BLP Admin Area		Customers		3|4
+BLP Admin Area		Processor		4|6
+BLP Admin Area		Processor groups	4|4
+BLP Admin Area		Projects		9|4
+BLP Admin Area		Time recording		33|7 <- special filters, there is also a calendar-like custom view of the table: restyle recommended
+BLP Admin Area		Contracts		14|4
+BLP Admin Area		Billing			39|3 <- special filters, most of them should be part of the normal filtering with saved presets
+BLP Admin Area		Roles/functions		3|4
+BLP Admin Area		External contact persons	5|5
+BLP Admin Area		Operations		7|3
+BLP Admin Area		PDF Templates		1|4
+BLP Admin Area		Booster training	12|3
+BLP Admin Area		Master data update	13|2
+
+EDI Reader		EDI Reader mapping	5|5
+EDI Reader		EDI Reader substitutions	5|5
+
+Support tickets		Support tickets -	15|4
+
+Support analytics		Booster insights - configurations	3|4
+
+User operations		User operations			6|2 <- User operations table needs a user parameter which is selected through a dropdown

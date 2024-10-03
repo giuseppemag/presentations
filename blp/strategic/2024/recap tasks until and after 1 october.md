@@ -46,14 +46,14 @@ by Dr Giuseppe Maggiore
 # Before 1/10
 FI dashboard in web2.0
 web1.9 dashboard cards
-web1.9 dashboard configuration for FI
+configuration for FI
 memory leak
 dashboard performance
 
 ---
 
 # After 1/10
-new view of all tables 
+new view for all tables 
 details forms: either restyle or redesign+rebuild
 new defaulting system
 new configuration system
@@ -80,9 +80,9 @@ no change in functionality or API
 
 ---
 
-# web1.9 dashboard configuration for FI
-adjust current configuration windows for FI cards
-restyle it
+# configuration for FI
+either adjust current configuration modals for FI cards and restyle them
+or plug in the new configuration system
 
 ---
 
@@ -105,11 +105,11 @@ still open to seek FE quick wins
 
 ---
 
-# new view of all tables 
+# new view for all tables 
 we architected and built a generic, reusable view for tables
 in use for all document tables and tasks
 will be used for all table views in the application
-**IMPORTANT!** these are not copies of code, but _reused instances of the same_
+**IMPORTANT!** these are not copies of code, but _reused instances of the same component_
 
 ---
 
@@ -117,14 +117,16 @@ will be used for all table views in the application
 many forms similar to each other
 per form, we will estimate the time to restyle it
 if it's too much, or the impact of a new form is high, we rebuild it
-**IMPORTANT!** we are building a generic form system like for tables to reuse instead of copy
+**IMPORTANT!** we are building a reusable form system to reduce copies
 
 ---
 
 # new defaulting system
-defaulting will be redesigned
-clearly show the filtering inputs (senderId = 123) andthe defaulted value (taxCode = abc)
-new filters created contextually from the dashboard and the filters view
+defaulting will be redesigned and rebuilt
+clearly show the _filtering inputs_ (senderId = 123) and the _defaulted value_ (taxCode = abc)
+allow table filtering and searching on _filtering inputs_
+filters CUD'ed contextually from the dashboard
+to be designed
 
 ---
 
@@ -137,6 +139,9 @@ hierarchical grouping/tagging for contextual screens
 
 # start screen
 an aesthetically pleasing start screen
+should not feel "like work"
+at least a beautiful splash screen/animation
+statistics, quick links, release notes - to be designed
 
 ---
 
@@ -168,13 +173,14 @@ architecture, business logic, API, styling, and design require different experti
 the codebase splits these clearly
 different experts can work without conflict on different phases of a feature
 this results in higher quality
+designers can contribute more to styling tasks
 
 ---
 
 # configuration vs deployment (machines making machines)
 too much code was repeated when dealing with similar things
 we are introducing more and more reusable modules
-when a reusable module is mature, _turn it_ into a configurable engine
+when a reusable module is mature, we turn it into a _configurable engine_
 for example: JSON definition of forms (in progress)
 this will greatly reduce the time to build a new form or dashboard card
 it even makes it possible to store some JSONs in the database for hyper-fast iteration without deployment
@@ -183,20 +189,19 @@ it even makes it possible to store some JSONs in the database for hyper-fast ite
 
 # process, documentation, and roadmap
 the process should zoom from requirements down to pixel-perfect
-needs extension with
-  interaction with multiple stakeholders
-  functional documentation - why is this feature there? 
-  documentation of ERP and client context
-  interaction design (high level flow/wireframes)
-  usable prototype
-  kitchen-sink design
-  **no pixel-perfect design**, style the usable prototype directly and work agile
+- interaction with multiple stakeholders
+- functional documentation - why is this feature there? 
+- documentation of ERP and client context
+- interaction design (high level flow/wireframes)
+- usable prototype
+- kitchen-sink design
+- **no pixel-perfect design**, style the usable prototype directly and work agile
 
 ---
 
 # integration with BE team
 make work less fragmented
-first focus on improving FE team before looking at broader perspective
+first focus on improving FE team before zooming out
 
 ---
 
@@ -204,8 +209,8 @@ first focus on improving FE team before looking at broader perspective
 team working hard on web1.9/FI deadline
 after deadline move on to remaining restyling/redesign
 meanwhile, improve efficiency and sustainability
-  of codebase
-  of process
+- of codebase
+- of process
 
 
 

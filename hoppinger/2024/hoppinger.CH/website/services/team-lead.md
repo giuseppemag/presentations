@@ -1,4 +1,4 @@
-# fCTO, team lead
+# Leading digital transformation
 
 Creating a technical team is quite a challenge. Finding the right people is just the very first step, but there is much more to it.
 
