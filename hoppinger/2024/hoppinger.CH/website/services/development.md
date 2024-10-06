@@ -187,15 +187,80 @@ In order to achieve this performance, we build our exposed API endpoints in such
 ## Backend - API
 > The data lives and transforms automatically, but what does the user see?
 
+In order to expose the system to users that will, well, use it, we need to make the data available. We do this by opening a series of "holes" in our backend: digital doors and windows of sorts. The holes can have different shapes, different keys, and different size, depending on the requirements of the application in terms of security and performance.
 
-Frontend - business logic
+### Privacy and security
+A system dealing with sensitive data such as commercial, transactional, or healthcare, will need to expose exactly the right data to exactly those users who are supposed to have access to it, and not indiscriminately allow everyone to see (and even worse: change!) everything. Let's dive into this topic.
 
-Frontend - styling
+The user needs to access a subset of the data both for reading and writing. Mind you: the subset for reading and the subset for writing will not necessarily be the same data: usually, a user can read quite a lot more data than they can modify!
 
-Frontend - web
+For example, a user will be able to see the available products in the shop, but will not be able to make changes to them (imagine a world where we could change the price on Amazon.com before buying: intriguing, but probably not very viable for the business  in the long run!). A user will be able to write for example their own address, their payment method, or preferred delivery method, among other things.
 
-Frontend - native
+The restrictions on reading and writing data are not only logical: they are the essential means by which we enforce security and integrity of the system. Each piece of data has a logical owner: be it a user or even another system (for example when we mirror data from an ERP into our own Elastic database).
+
+Exposing the right data in the right way to the right users is the job of the API layer, which implements our model of data ownership (who owns what) and privacy (who can see what).
+
+Data access restrictions are eerily often (read: practically always) implemented with a _reachability model_. The reachability model states that a given non-public entity can be accessed along a _path_ from the current user down to that entity. Let me give you a few examples:
+
+```
+can edit: teacher -> teaches -> course -> class -> teaching unit
+can view: student -> enrolled -> course -> class -> teaching unit
+can edit: customer -> profile
+```
+
+In the above examples, the arrow `->` denotes a relational link in the database. Some special tables such as the table `teaches` or the table `enrolled` are _token_ tables that grant access to linked resources. Sometimes, token tables represent organisational, rather than physical, concepts, but of course there are other scenarios and ways to interpret them.
+
+### Performance (both kinds)
+The frontend needs to be fast. Nowadays there is no excuse for slow frontends that do not expose all data so quickly that the user does not ever feel like they are waiting.
+
+In some markets where competition is fierce, it has even been measured how a slower application can literally cause significant loss of revenue and a flight of customers to competitors, so this topic is often on everyone's top of mind, and for good reason too.
+
+A good API needs to allow the frontend to pull large amounts of data with a delay of a few dozens of milliseconds. Crossing over into the realm of the hundreds of milliseconds, or in some cases (gasp!) even seconds is simply not acceptable anymore as a performance norm.
+
+There is another kind of performance though: developers' performance. 
+
+> In the modern world of headless web development, the API is used to power different frontends. This is known as an _omnichannel_ strategy, and it allows us to offer different applications that can access exactly the same data in real-time, ideally even with the different applications talking to each other. A cool example that almost everyone knows is how Spotify will let you control whatever music another device is playing with your account!
+> After all, the user does not care about whether they are using your app via a mobile phone or a desktop PC browser: they are accessing their own data in a seamless and logical manner.
+
+Frontends are growing more and more interactive and complex, not to mention multi-platform. Frontend developers need to be able to access data however they see fit, without having to require changes to the API done by a backend team somewhere else. This can kill productivity and make delivery work a quality and organisational nightmare.
+
+> When we are very lucky, the other team is in the same building. When the Gods of coding do not favor us, the other team is in another timezone and speaks in an incomprehensible accent. 
+
+In short, the API must be fast and hyper flexible.
 
 
-low-code, no-code, SaaS
+### Taming the beast
+Ok, so we need security, performance, and flexibility. Sounds like we are screwed and the only reasonable course of action would be to give up software development altogether and focus on, say, goose farming, right?
+
+Fortunately, no! There is a way. It has multiple components.
+
+The first ingredient in order to conquer this challenge is code-generation, or as I love calling it: **scaffolding**. Data access patterns such as reachability models for access restriction can be defined declaratively with little more than the syntax that I offered a few paragraphs earlier. Instead of writing queries by hand, which is boring and error prone, we can let the system generate the right queries for us with minimal input.
+
+> On the complete other end of the spectrum,I have seen so many systems where queries are generated procedurally at runtime with text that I sometimes must wonder why do we do this to ourselves?
+
+A good code generator can do wonders. It can write a layer of access to our data that is guaranteed to respect our security model, which is already an amazing thing. It can also generate the synchronisation routines that keep the SQL and NoSQL stores aligned without humans needing to worry about it. But most of all, it can generate very rich API interfaces that offer huge flexibility to the frontend team.
+
+Drumrolls.......
+
+Enter, the graph API, and in particular OData (the enterprise variant) and GraphQL (the hipster little brother).
+
+A battle tested system capable of scaffolding a graph API can guarantee security, performance, and flexibility out of the box. A team with such a tool in place will be able to use it for years (decades) with barely any change, thereby reducing backend work by a huge percentage (in the double digits, but obviously extremely context dependent so no further claim is possible here).
+
+Say goodbye to hand-written SQL queries, manual authorisation checks, or tickets from the frontend team to the backend team requesting an extra filter option: we can get all of this, and more, for free, with the right architecture.
+
+Ahhhh, I love my job.
+
+## Frontend
+
+### Data access and business logic
+
+### Styling
+
+### Advanced presentation (HTML5)
+
+### Web vs native
+
+
+## The rest of the world
+low-code, no-code, BI tools
 

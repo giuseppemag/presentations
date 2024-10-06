@@ -19,7 +19,7 @@ I am used to doing this alone, or within an existing team, but my secret superpo
 ## Services
 My services cover everything you could dream about when dealing with strategic digital transformation: from problem analysis down to development and hosting. 
 
-[team-lead](./services/team-lead.md) | [security](./services/security.md) | [architecture](./services/architecture.md) | [development](./services/development.md) | [hosting](./services/hosting.md) | [ERP integration](./services/erp-integration.md) | [native apps](./services/native-apps.md)
+[team-lead](./services/team-lead.md) | [security](./services/security.md) | [architecture](./services/architecture.md) | [development](./services/development.md) | [hosting](./services/hosting.md) | [ERP integration](./services/erp-integration.md)
  
 ## Industries
 The beauty of strategic digital transformation is that the same know-how can apply to many different industries. Here are some of my favourites:
