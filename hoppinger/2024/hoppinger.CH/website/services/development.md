@@ -16,12 +16,9 @@ Let's go for a Dantesque tour of these layers: we will move from the data layer,
 
 A good data layer is capable of storing data **securely and correctly**, and retrieving data **quickly**. This "holy triad" reflects the fact that (transactional) data is often privacy-sensitive and needs proper protection, mistakes in (transactional) data can have serious real-world consequences that are often not acceptable, and finally users expect everything without waiting, so speed is of paramount importance.
 
-
 A fantastic combination for the data layer is the so-called double-store, often found in combination with the CQRS design pattern. When we work following this double-store principle, we use two separate databases: one for writing data, optimized for correctness, and the other for reading data, optimized for performance.
 
-
 In general, the combination of one SQL database for the writing component and one NoSQL/document database for the reading component works very well and is commonly found out there.
-
 
 > My personal favorite combination is to use Postgres for the writing component, and Elastic for the reading component.
 
@@ -190,11 +187,11 @@ In order to achieve this performance, we build our exposed API endpoints in such
 In order to expose the system to users that will, well, use it, we need to make the data available. We do this by opening a series of "holes" in our backend: digital doors and windows of sorts. The holes can have different shapes, different keys, and different size, depending on the requirements of the application in terms of security and performance.
 
 ### Privacy and security
-A system dealing with sensitive data such as commercial, transactional, or healthcare, will need to expose exactly the right data to exactly those users who are supposed to have access to it, and not indiscriminately allow everyone to see (and even worse: change!) everything. Let's dive into this topic.
+A system dealing with sensitive data such as commercial, transactional, or healthcare, will need to expose exactly the right data to exactly those users who are supposed to have access to it, and not indiscriminately allow everyone to see (and even worse: change!) everything, especially stuff that belongs to others. Let's dive into this.
 
 The user needs to access a subset of the data both for reading and writing. Mind you: the subset for reading and the subset for writing will not necessarily be the same data: usually, a user can read quite a lot more data than they can modify!
 
-For example, a user will be able to see the available products in the shop, but will not be able to make changes to them (imagine a world where we could change the price on Amazon.com before buying: intriguing, but probably not very viable for the business  in the long run!). A user will be able to write for example their own address, their payment method, or preferred delivery method, among other things.
+For example, a user will be able to see the available products in the shop, but will not be able to make changes to them (imagine a world where we could change the price on Amazon.com before buying: intriguing, but probably not very viable for the business in the long run!). A user will be able to write, for example, their own address, their payment method, or preferred delivery method, among other things, but nothing else outside of the domain of that specific user. Similarly, a vendor will only be able to manage their own products and prices, but no products and prices from other vendors.
 
 The restrictions on reading and writing data are not only logical: they are the essential means by which we enforce security and integrity of the system. Each piece of data has a logical owner: be it a user or even another system (for example when we mirror data from an ERP into our own Elastic database).
 
@@ -209,6 +206,8 @@ can edit: customer -> profile
 ```
 
 In the above examples, the arrow `->` denotes a relational link in the database. Some special tables such as the table `teaches` or the table `enrolled` are _token_ tables that grant access to linked resources. Sometimes, token tables represent organisational, rather than physical, concepts, but of course there are other scenarios and ways to interpret them.
+
+The ability to model security in a uniform, standardized way can greatly simplify implementation by eradicating edge cases and lots of different ad-hoc ways to restrict data access that might be hard to maintain and understand. A simpler, uniform model is easier to implement and much easier to inspect, test, and maintain.
 
 ### Performance (both kinds)
 The frontend needs to be fast. Nowadays there is no excuse for slow frontends that do not expose all data so quickly that the user does not ever feel like they are waiting.
@@ -242,15 +241,60 @@ A good code generator can do wonders. It can write a layer of access to our data
 
 Drumrolls.......
 
-Enter, the graph API, and in particular OData (the enterprise variant) and GraphQL (the hipster little brother).
+Enter, the graph API, and in particular OData (the enterprise variant) and GraphQL (the hipster little brother). A graph API exposes a single endpoint which supports fetching any entity, filtered in any way we want, and sorted in any way we want. For example:
 
-A battle tested system capable of scaffolding a graph API can guarantee security, performance, and flexibility out of the box. A team with such a tool in place will be able to use it for years (decades) with barely any change, thereby reducing backend work by a huge percentage (in the double digits, but obviously extremely context dependent so no further claim is possible here).
+```
+all Users where active == false
+all Users sorted by creation date (descending)
+all ShoppingCarts where creation date older than one day sorted by total amount
+...
+```
+
+A graph API supports something exceptionally useful: _expansions_. Given an entity, we can require related entities, and apply the same filters, sorting, etc. at any level.
+
+For example:
+
+```
+all Users where active = true
+  all Orders
+  all Invoices where paid == false 
+```
+
+A single query capable of accessing active users, their orders, and their invoices. Amazing!
+
+The flexibility of such a system is self-evident. But what about security and performance? Surely such a system risks leaking all sorts of private data, and if the queries are too big, they will also be very slow, right? Right?!?!?!
+
+Nope. Graph APIs are supposed to be paired with a reachability permission system that either rejects unsafe queries, or restricts the results only to the set of results that the current user is allowed to see. This way, even if a queries tries to get all active users, the endpoint will only return the users that we are currently allowed to see:
+- an admin will get them all
+- an org admin will only get those in their org
+- a regular user will only get themselves
+- an anonymous user will get an empty result
+
+This way security is applied as a restriction, and the application and its (frontend) developers can simply request whatever they want without worrying about data leaks.
+
+Performance can be tricky. I will not lie: this took me and my team a lot of work to get right, but it's possible and when done right, the results are absolutely awesome. Even the most complex graph queries can be compiled down to a single, huge SQL query, and a modern DBMS like Postgres or Azure SQL will be able to plow through such queries in minuscule amounts of time. I have witnessed a query that resulted in 40 A4s (I printed it and hung it from the office walls for a whole year) and it ran in about 0.4s. Some limitations on the depth of the expands (more than 5 should make you question your life choices) and enforced pagination at some point is an effective way to grant some peace of mind.
+
+> I would never recommend building a graph API backend manually. The only sane way to tackle such a thing is to bite the bullet and make it generic immediately. My favorite approach is to build a code generator that, given a specification of the datamodel to expose, **as well as its security restrictions**, all in a declarative fashion that is easy to audit, produces all the necessary code. This way, instead of a potentially huge implementation that is ad hoc for our datamodel and thus filled with weird exceptions and edge cases, we go for a single, reusable, clean system that is easier to maintain, especially in the long run.
+> A battle tested system capable of scaffolding a graph API can guarantee security, performance, and flexibility out of the box. A team with such a tool in place will be able to use it for years (decades) with barely any change, thereby reducing backend work by a huge percentage (in the double digits, but obviously extremely context dependent so no further claim is possible here).
 
 Say goodbye to hand-written SQL queries, manual authorisation checks, or tickets from the frontend team to the backend team requesting an extra filter option: we can get all of this, and more, for free, with the right architecture.
 
 Ahhhh, I love my job.
 
 ## Frontend
+> The stage is set, we are ready to roll, let's build something beautiful that our users will fall in love with.
+
+It is now time to build the frontend of the application. A modern frontend is supposed to be hyper-fast, beautiful, intelligent, and ergonomic. And, the same user experience should be available on all platforms: browser (big and small screens), native apps, and in general anywhere users might want to run the application on.
+
+In order to achieve this optimally, the frontend needs to be treated as an engineering system in its own regard, and the structure of its logical layers, the reusability across platforms, the error handling, and much more need to be crafted intelligently.
+
+> Failing to do so can land an application in a veritable software-development-Hell. A quick-and-dirty approach to frontend development works, but only for a time, and only up for a given size of application.
+> In a large application, mixing API logic, business logic, concurrency management (API calls taking a long time, users interacting while API calls are flying, validations being performed as the user keeps typing, etc.), and presentation will eventually yield a codebase with lots of issues. Bugs are all too common, upgrades fail because of too many dependencies, onboarding new developers results in weeks or months of more or less loud cursing, and in general inefficiency coupled with a strong sense of unease.
+
+A well built frontend, where different people with different skillsets such as business logic vs visuals and design can work together without getting in each other's way, is a pleasure to work with, but most importantly: it scales indefinitely.
+
+Years into a project, developers will be able to add functionality without too much effort, and bugs will often, if not always, be easy to reproduce, understand, and fix. In short, a good frontend will provide us with proper technical control and through that we will deliver lots of value to both business and users. 
+
 
 ### Data access and business logic
 
