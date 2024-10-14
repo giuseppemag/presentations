@@ -297,13 +297,42 @@ Years into a project, developers will be able to add functionality without too m
 
 
 ### Data access and business logic
+The frontend journey starts with its ability to exchange data with the backend, and to process this data correctly.
+
+Data exchange refers to the API component, which receives and sends data to the backend. The data as it comes from the API should not (and in some cases even can not) be used directly though, so there is some work that needs to be done here.
+
+First we need to validate that the data looks like it's supposed to: maybe the backend changed its data format (annoying, I know, but it happens all the time!); or maybe there is an edge case that we did not take into account. In any case, we cannot use unexpected data and just try to process it randomly with inadequate business logic, so if the data does not match the expected structure, better to log an error in our monitoring mechanism and let the user know that something went wrong. Better to gracefully fail than to blunder through and ending up doing God knows what!
+
+APIs can also fail. Sometimes the failure is structural, but sometimes it's transient, for example when an application temporarily has bad Internet access and retrying in a few seconds might actually give us a good response.
+
+A good API manager in the frontend will thus ensure that the data that comes into the application is valid, and also that the application is shielded from transient errors through a solid retry mechanism.
+
+After the API aspect of our frontend is covered, the really fun stuff begins. Modern frontends, especially when dealing with omni-channel web+native frontends, need to be pretty packed with features and business logic.
+
+The most important aspect of the frontend' business logic is the mirroring of the backend database. Well, of course, not all of it, but just the revelant slice for the current user in the current context. Let's think about this for a second: any frontend application showing some data from the backend, is actually managing a micro database. The richer the domain, the more we need to deal with dependencies between the data (if I select another delivery company then the delivery dates need to be refreshed: what is that? A data dependency!), or with multiple users affecting the same data in realtime (shortstay rental rooms for students' for example can disappear in the hundreds in a few minutes after publication, so we need to give users realtime information about their availability in order to avoid confusion and frustration).
+
+Finally, whenever the user attempts to affect a change in the data, this needs to be validated, usually by sending a validation message to the backend which will either confirm or refuse the change (for example, an invalid delivery date).
+
+This whole structure requires a centralized, well-architected, constant exchange of information with the backend. Some of this exchange happens upon user interaction, and some of this exchange happens automatically through background processes that run on their own all the time.
+
+Centralization is essential because it allows us to manage not only the various data elements (orders, invoices, users, delivery dates, etc.)  but most importantly **their relationships!**. If we fragment data storage in a series of unrelated software components that cannot talk to each other because they are accidentally isolated, we lose the ability to coordinate their storage and this will lead to a...schizofrenic...application. And nobody likes that.
+
+New-ish technologies such as websockets can help us a lot here. Consider for example multiple users interacting with the same products. We want to show real-time availability. In mission-critical scenarios, we cannot just wait for the user to try to buy a product in order to tell them that it's not available anymore. We can allow the backend to proactively push messages to the frontend, even in a web browser, by connecting them with websockets, achieving real-time, omni-directional traffic. Websockets can also be used in order to give life to chat applications, collaborative editing dashboards, and all sorts of super-cool, extremely powerful user experiences. YAY!
+
+Finally, we need to manage **time**. For example, we need to be able to effectively write code that knows how to deal with delays, retry-mechanisms, background jobs, debouncing, and all sorts of things that should not happen as fast as possible, but rather spread out logically over a longer period. The ability to explicitly encode the dynamics of the system over time is a vital architectural feature of any well-designed application, but in the frontend in particular, we have so many concurrent, unpredictable sources of events: the user actions, the network messages, the internal processes! Turning these chaotic threads into a single, well-structured flow is as much engineering as it is art and mathematics, but if we get it right, our users will greatly benefit from it for years on end!
+
 
 ### Styling
+CSS
+responsiveness
+composability/design systems
+separation of logic and presentation for team structuring and no conflicts
 
 ### Advanced presentation (HTML5)
+canvas, 2D, 3D, smoothness, collaboration
 
 ### Web vs native
-
+Separation and injection of views, reuse of as much as possible
 
 ## The rest of the world
 low-code, no-code, BI tools
