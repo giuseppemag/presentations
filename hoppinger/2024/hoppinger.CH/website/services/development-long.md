@@ -322,18 +322,29 @@ New-ish technologies such as websockets can help us a lot here. Consider for exa
 Finally, we need to manage **time**. For example, we need to be able to effectively write code that knows how to deal with delays, retry-mechanisms, background jobs, debouncing, and all sorts of things that should not happen as fast as possible, but rather spread out logically over a longer period. The ability to explicitly encode the dynamics of the system over time is a vital architectural feature of any well-designed application, but in the frontend in particular, we have so many concurrent, unpredictable sources of events: the user actions, the network messages, the internal processes! Turning these chaotic threads into a single, well-structured flow is as much engineering as it is art and mathematics, but if we get it right, our users will greatly benefit from it for years on end!
 
 
-### Styling
-CSS
-responsiveness
-composability/design systems
-separation of logic and presentation for team structuring and no conflicts
+### Presentation
+The most recognizable part of the fontend is of course the way things look, or the _styling_. Styling is achieved through the technical tools of HTML and CSS, which determine the position of elements on the screen, their color, background, borders, fonts, and so on.
 
-### Advanced presentation (HTML5)
-canvas, 2D, 3D, smoothness, collaboration
+Styling is a very rich domain that goes beyond pretty shapes and colors. The two biggest challenges when dealing with styling are responsiveness and accessibility.
 
-### Web vs native
-Separation and injection of views, reuse of as much as possible
+Responsiveness ensures that no matter the screen size, the application will always work. A smartphone screen, a tablet, or a large desktop screen require subtle changes in the arrangement of elements, such as a side-menu that collapsed into a "hamburger menu" when the screen is too small, or a grid flowing over, and much more.
 
-## The rest of the world
-low-code, no-code, BI tools
+Accessibility ensures that the choice of colors does not exclude people with a disability. For people with colorblindness the right contrast between colors will make the difference between visible and invisible text for example.
+
+From an engineering and future-proof perspective on the other hand, the ability to make use of a _design system_ will provide a series of small, reusable components that can be put together into larger compositions that will always look beautiful and logical. Such a _design system_ saves frontend developers and designers from having to redesign every single page of the application as if it were unique, and rather provides a toolkit of "Lego blocks" to compose in all sorts of ways.
+
+Finally, the separation of the files that govern styling from the files that implement API and business logic, when done properly, provides another important advantage: different team members can work on different parts of the codebase without encountering conflicts, thereby booking higher team effectiveness through parallel work.
+
+
+#### Advanced presentation (HTML5)
+There is more to the presentation layer than just styling and layout. Modern web browsers support advanced features such as 2D and 3D animations (the `canvas`), and also real-time collaboration across different browsers (_websockets_). This way we can build veritable "windows into a shared virtual world" where users can see each others' activities on the screen, and co-create at the same time.
+
+Awesome stuff!
+
+#### Web vs native
+The frontend code for API and business logic can work without any change on any platform. This way we can build omni-channel applications that work as web applications in the browser as well as native applications on a smartphone without having to maintain two separate codebases.
+
+The presentation layer, on the other hand, is a different story, because the HTML elements that are available in the browser are not available and identical in a native app, so we need a different version of the presentation layer if we want to deploy the application on iOS and Android.
+
+Our way of working is well prepared for this! As long as the presentation layer is neatly split from the API and business logic, which is a great practice anyway, we will be able to reuse all of the reusable components, and we will be able to turn a web application into a smartphone native app with as little effort as possible.
 
