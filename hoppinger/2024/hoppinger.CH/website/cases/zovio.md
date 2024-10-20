@@ -4,7 +4,7 @@ Dozens of suppliers.
 Dozens of buyers.
 Each buyer has different prices, processes, roles, and rights.
 
-When we first started the product, it was clear that the situation required a new kind of architecture. The huge variety of different ERPs from the various suppliers, paired with the huge variety of procurement systems from the different buyers, as well as the many purchase processes that need to be supported looked daunting.
+When we first started the project, it was clear that the situation required a new kind of architecture. The huge variety of different ERPs from the various suppliers, paired with the huge variety of procurement systems from the different buyers, as well as the many purchase processes that need to be supported looked daunting.
 
 This is simply not something that can be done manually, at least not without an army of salespeople and backoffice employees.
 

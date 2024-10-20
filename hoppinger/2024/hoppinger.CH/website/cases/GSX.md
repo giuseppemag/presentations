@@ -1,46 +1,35 @@
 # B2B horeca e-learning webshop
+Thousands of recipes, ingredient information, and knowledge articles.
+Thousands of horeca professionals, from students to veterans.
+Dozens of expert publishers and sponsors.
 
-<!-- 
-Thousands of healthcare products.
-Dozens of suppliers.
-Dozens of buyers.
-Each buyer has different prices, processes, roles, and rights.
+When we first started the project, it was clear that the sheer volume of the application would require a flawless and full automation on top of a fantastic user experience. The amount of content required best-in-class search capabilities. The number of customers and payments needed to run as much as possible without human intervention.
 
-When we first started the product, it was clear that the situation required a new kind of architecture. The huge variety of different ERPs from the various suppliers, paired with the huge variety of procurement systems from the different buyers, as well as the many purchase processes that need to be supported looked daunting.
+Publication of new content and marketing activities must be simplified and streamlined to the next level.
 
-This is simply not something that can be done manually, at least not without an army of salespeople and backoffice employees.
+## ERP-connected webshop+portal+website
+We designed, architected, and built a project with nothing short of amazing features.
 
-But that is not how we roll.
-
-## ERP-connected webshop+portal
-We designed, architected, and built a project that on paper looked almost impossible.
-
-A high-quality custom self-service software that allowed buyers to:
+A high-quality custom self-service website+webshop that allowed customers to:
 - browse available products
-- see their customized discounts
-- purchase (according to their company' process)
+- start a trial
+- purchase a subscription
 - pay online
-- manage their orders, repeat old orders, see invoices, etc.
+- manage their catalogue
+- create and share their own content
 
-Every single step is automated. The whole process can last as little as a few minutes, and all happens from a smartphone or a PC.
+Every single step is automated. The whole onboarding of a customer can last as little as a few minutes, and it all happens from a smartphone or a PC.
 
-All data is aggregated into a single Business Central ERP. Our custom portal communicates with the ERP in order to bring a high quality UX to life.
+The system is connected to a Business Central ERP. Thousands of orders, invoices, and their payments are created automatically, allowing a team of 0 (zero!) financial specialists to manage tens of thousands of transactions.
 
-Sometimes though, the process gets stuck somewhere. A buyer orders a product that was supposed to be available but is not anymore, a payment does not go through, etc. 
-The portal also features an employee interface, where employees can:
-- see all orders that are stuck and intervene
-- see all active and past orders and invoices
-- impersonate a buyer in the portal in order to offer better help by "watching over the shoulder"
-- inspect all data from all relevant systems: ERP, DMS, contracts, etc.
+Even the edge cases are fully automated: missed payments, reminders, as well as cancellation of contracts are all done without any form of user intervention.
 
 ## Results
-The results are nothing short of spectacular. 
+The results are great!
 
-The vast majority (90% or more) of purchases happen fully automatically without backoffice intervention.
-The number of backoffice employees who need to work fulltime on the rental process is reduced by 70%.
-The number of ERP licenses is reduced by 90%.
-Uptime of the system is as close as it gets to 100%.
+Backoffice employees are fully focused on creating value. New recipes are created and uploaded with a low-code PowerApp on a tablet, because when you are cooking with greasy fingers big buttons are the best. Marketing activities and special offers are managed with a state of the art DMS/CMS based on Sharepoint Online.
 
-And thanks to continuous delivery, we keep booking improvements for both students and internal employees.
+As a result, the platform is an international powerhouse, connecting and empowering professionals all over the world with a minimal crew of hyper-effective in-house experts.
 
- -->
+
+Cheers and _bon appetit_!
