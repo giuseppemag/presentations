@@ -21,11 +21,6 @@ My services cover everything you could dream about when dealing with strategic d
 
 [team-lead](./services/team-lead.md) | [security](./services/security.md) | [architecture](./services/architecture.md) | [development](./services/development.md) | [hosting](./services/hosting.md) | [ERP integration](./services/erp-integration.md) | [extended team](./services/extended-team.md)
  
-## Industries
-The beauty of strategic digital transformation is that the same know-how can apply to many different industries. Here are some of my favourites:
-
-[housing and real-estate](./industries/housing.md) | [manufacturing](./industries/manufacturing.md) | [e-health](./industries/e-health.md)
-
 ## Cases
 Existing projects showcase expertise and a maker's pride, but they also represent a veritable treasure trove of solutions that can be readily reused: after all, we don't need to reinvent the wheel all the time!
 
